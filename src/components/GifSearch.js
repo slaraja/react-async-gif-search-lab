@@ -9,18 +9,40 @@
 //callback function will query the API with th etext the user has entered
 
 import React from 'react'
+import GifListContainer from '../containers/GifListContainer'
+
 
 class gifSearch extends React.Component {
 
+    state = {
+        input: ""
+    }
+
+    //use an arrow function to be able to access and bind "this"
+    //then we can call function
+    handleFormChange = (e) => {
+        const input = e.target.input
+        const value = e.target.value
+
+        this.setState({
+            [input]: value
+        }, () => console.log(this.state))
+        // keep track of what the user typed in 
+    }
+
     render() {
         return (
-        <form>
+        <div>
+        <form onSubmit={this.props.handleSubmit}>
             <label>Enter a Search Term:</label>
-            <input type="text" search="search" />
+            <input type="text" input="input" onChange={this.handleFormChange} value={this.state.input}/>
             <input type="submit" value="Find Gifs"/>
         </form>
+        </div>
         )
     }
 }
+
+
 
 export default gifSearch

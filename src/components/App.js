@@ -10,16 +10,18 @@ const App = () => {
   return (
     <div>
         < NavBar color='black' title="Giphy Search" />
+        <GifListContainer/>
     </div>
   )
 }
 
-function render () {
-  return (
-    <div>
-      <GifListContainer/>
-    </div>
-  )
-}
+// return GifListContainer
+
+// function render () {
+//   return (
+//     <div>
+//     </div>
+//   )
+// }
 
 export default App

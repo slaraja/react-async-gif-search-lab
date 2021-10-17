@@ -1,44 +1,53 @@
 import React from 'react'
-import GifSearch from './components/GifSearch.js'
+import GifList from '../components/GifList';
+import GifSearch from '../components/GifSearch';
 
-class GiftListContainer extends React.Component {
+class GifListContainer extends React.Component {
     
     constructor() {
+        super()
         this.state = { 
-        gifs: [] 
+            gifs: [] 
+            // search: "",
         };
     }
 
     render() {
-
         return (
-            <div id="gif-list-container">
+            <div id="container">
                 <div>
-                    < gifSearch />
+                    < GifSearch />
                 </div>
             </div>
         )
     }
 
-    //on a submit event, it should invoke the callback with the value of the text input
-//callback function will query the API with the text the user has entered
-    submitHandler() {
 
-    }
+//on a submit event, it should invoke the callback with the value of the text input
+//callback function will query the API with the text the user has entered
 
     //responsible for fetching the data from Gifphy API
-    componentDidMount() {
-
+ handleSubmit () {
+        e.preventDefault
+        
         fetch ("https://api.giphy.com/v1/gifs/search?q=dolphin&api_key=dJBhFwbnmoC8q1BPL1NXkhVc6JdFvmm6")
         .then((resp) => resp.json())
         .then((data) => {
+            let gifImages = data.data.map(gif => gif.images.original.url)
             this.setState({
-                const firstThree = gif.slice(0, 3),
-                //grab first 3 gifs from resp
-                gif: firstThree
+              gifs: gifImages
             })
         })
-    }
-}
+      }
 
-export default GiftListContainer
+    //   render() {
+    //     return (
+    //       <div>
+    //         <GifSearch handleSearch={this.handleSearch}/>
+    //         <GifList gifs={this.state.gifs}/>
+    //       </div>
+    //     )
+    //   }
+    }
+
+export default GifListContainer
